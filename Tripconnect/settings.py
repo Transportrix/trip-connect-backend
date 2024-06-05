@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
+from os import getenv
+# import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -43,7 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'Users',
+    'Vehicles',
+    'Bookings',
+    'Drivers',
+    'Notifications',
+    'Reviews'
 ]
 
 MIDDLEWARE = [
@@ -82,8 +89,15 @@ WSGI_APPLICATION = 'Tripconnect.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': getenv('PGDATABASE'),
+        'USER': getenv('PGUSER'),
+        'PASSWORD': getenv('PGPASSWORD'),
+        'HOST': getenv('PGHOST'),
+        'PORT': getenv('PGPORT', 5432),
+         'OPTIONS': {
+             'sslmode': 'require',
+        }
     }
 }
 
