@@ -83,7 +83,7 @@ WSGI_APPLICATION = "Tripconnect.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "vince",
+        "NAME": "vase",
         "USER": "tezt_owner",
         "PASSWORD": "gZj6sVJlM7NC",
         "HOST": "ep-dark-paper-a53hd73a.us-east-2.aws.neon.tech",
