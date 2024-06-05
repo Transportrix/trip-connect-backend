@@ -5,7 +5,10 @@ from django.urls import include, path
 # from core import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
+    path('admin/', admin.site.urls),    
+    path('products/',include('core.urls.product')),
+
     # path("", views.index, name="index"),
     # path("bookings/", include('core.urls.bookings')),
     # path("users", views.index, name="index"),

@@ -1,10 +1,11 @@
 from django.db import models
-from Users.models import Users
+
+from core.models.users import User
 
 
 # Create your models here.
-class Notifications(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+class Notification(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField(max_length=255)
     message = models.TextField(max_length=255)
     # status = models.TextChoices(

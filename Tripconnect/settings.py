@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-ot$&8ex3!)^!nhy=nbh=m=312^q2jpa!mpw0wumodrm7#oo(h@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["trip-connect-e7497c974b59.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["trip-connect-e7497c974b59.herokuapp.com", "127.0.0.1", 'localhost']
 
 
 # Application definition
