@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from os import getenv
+
 # import dj_database_url
 from dotenv import load_dotenv
 
@@ -31,7 +32,7 @@ SECRET_KEY = "django-insecure-ot$&8ex3!)^!nhy=nbh=m=312^q2jpa!mpw0wumodrm7#oo(h@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["trip-connect-e7497c974b59.herokuapp.com", "127.0.0.1", 'localhost']
+ALLOWED_HOSTS = ["trip-connect-e7497c974b59.herokuapp.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -43,8 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'core'
- 
+    "core",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -82,16 +83,16 @@ WSGI_APPLICATION = "Tripconnect.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('PGDATABASE'),
-        'USER': getenv('PGUSER'),
-        'PASSWORD': getenv('PGPASSWORD'),
-        'HOST': getenv('PGHOST'),
-        'PORT': getenv('PGPORT', 5432),
-         'OPTIONS': {
-             'sslmode': 'require',
-        }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": getenv("PGDATABASE"),
+        "USER": getenv("PGUSER"),
+        "PASSWORD": getenv("PGPASSWORD"),
+        "HOST": getenv("PGHOST"),
+        "PORT": getenv("PGPORT", 5432),
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
 

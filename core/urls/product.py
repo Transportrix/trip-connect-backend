@@ -1,10 +1,8 @@
-from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 
-from core.views.product import product_list
-
-# from core import views
+from core.views.product import ProductDetail, ProductList
 
 urlpatterns = [
-    path("", product_list, name="product_list"),
+    path('', ProductList.as_view(), name='product_list_create'),
+    path('<int:pk>/', ProductDetail.as_view(), name='product_detail'),
 ]
