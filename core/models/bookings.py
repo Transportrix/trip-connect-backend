@@ -6,9 +6,9 @@ from core.models.vehicles import Vehicle
 
 # Create your models here.
 class Booking(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     # booking_status = models.TextChoices("pending","approved","declined")
-    vehicle_id = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    vehicle_id = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True)
     pickup_time = models.DateTimeField()
     distance = models.IntegerField()
     # distance_unit = models.TextChoices("KM","M","Miles")
