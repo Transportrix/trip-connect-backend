@@ -1,8 +1,10 @@
 from django.urls import path
 
-from core.views.product import ProductDetail, ProductList
+from core.views.users import UserDetail, UserGetOrCreateByUid, UserList
 
 urlpatterns = [
-    path('', ProductList.as_view(), name='_list'),
-    path('<int:pk>/', ProductDetail.as_view(), name='_detail'),
+    path('', UserList.as_view(), name='users_list'),
+    path('get-or-create-user-by-uid/', UserGetOrCreateByUid.as_view(), name='users_list'),
+
+    path('<int:pk>/', UserDetail.as_view(), name='users_detail'),
 ]
