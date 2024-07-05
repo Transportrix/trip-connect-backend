@@ -85,14 +85,12 @@ WSGI_APPLICATION = "Tripconnect.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": getenv("PGDATABASE"),
-        "USER": getenv("PGUSER"),
-        "PASSWORD": getenv("PGPASSWORD"),
-        "HOST": getenv("PGHOST"),
+        "NAME": getenv("TripConnect"),
+        "USER": getenv("Tables_owner"),
+        "PASSWORD": getenv("ZQoN5bvI2RGy"),
+        "HOST": getenv("http://ep-jolly-rice-a5hsjlfy.us-east-2.aws.neon.tech"),
         "PORT": getenv("PGPORT", 5432),
-        "OPTIONS": {
-            "sslmode": "require",
-        },
+        "OPTIONS": {"sslmode": "require"},
     }
 }
 

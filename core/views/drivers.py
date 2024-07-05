@@ -4,10 +4,11 @@ from rest_framework import status
 from django.http import Http404
 from drf_yasg.utils import swagger_auto_schema
 from core.models.drivers import Driver
-from core.serializers.product import DriverSerializer
+from core.serializers.drivers import DriverSerializer
+from core.serializers.drivers import DriverSerializer
 
 
-class DriverList(APIView):
+class Driverlist(APIView):
     def get(self, request):
         drivers = Driver.objects.all()
         serializer = DriverSerializer(drivers, many=True)
