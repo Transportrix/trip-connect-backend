@@ -4,4 +4,4 @@ from core.models.drivers import Driver
 class DriverSerializer(serializers.ModelSerializer):
     class Meta:
         model = Driver
-        fields = ['id', 'name', 'vehicle_id', 'vehicle_type','phone_number','address']
+        fields = ['id' , 'license_number']

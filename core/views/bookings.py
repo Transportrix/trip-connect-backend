@@ -3,12 +3,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 from drf_yasg.utils import swagger_auto_schema
-from core.models.bookings import Booking
-from core.serializers.bookings import BookingsSerializer
+from core.models.fixedbookings import FixedBooking
+from core.serializers.fixedbooking import BookingsSerializer
 
 class BookingsList(APIView):
     def get(self, request):
-        bookings = Booking.objects.all()
+        bookings = FixedBooking.objects.all()
         serializer = BookingsSerializer(bookings, many=True)
         return  Response(serializer.data)
       
@@ -25,8 +25,8 @@ class BookingsList(APIView):
 class BookingsDetail(APIView):
     def get_object(self, pk):
         try:
-            return Booking.objects.get(pk=pk)
-        except Booking.DoesNotExist:
+            return FixedBooking.objects.get(pk=pk)
+        except FixedBooking.DoesNotExist:
             raise Http404
 
     def get(self, request, pk):

@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from core.models import User
-from core.serializers.users import UserSerializer
+from core.serializers.user import UserSerializer
 from django.http import Http404
 from drf_yasg.utils import swagger_auto_schema
 

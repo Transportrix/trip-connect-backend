@@ -1,8 +1,8 @@
 from django.urls import path
 
-from core.views.drivers import Driver, Driverlist
+from core.views.drivers import DriverDetail, DriverList
 
 urlpatterns = [
-    path('', Driver.as_view(), name='driver_list'),
-    path('<int:pk>/', Driver.as_view(),  name='driver_detail'),
+    path('', DriverList.as_view(), name='driver_list'),
+    path('<int:pk>/', DriverDetail.as_view(),  name='driver_detail'),
 ]

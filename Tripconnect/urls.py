@@ -39,8 +39,8 @@ urlpatterns = [
     path('api/drivers/',include('core.urls.drivers')),
     path('api/notifications/',include('core.urls.notifications')),
     path('api/reviews/',include('core.urls.reviews')),
-    path('api/vehicles/',include('core.urls.vehicles')),
-    path('api/bookings/',include('core.urls.bookings')),
+    path('api/transportbuses/',include('core.urls.vehicles')),
+    path('api/fixedbookings/',include('core.urls.bookings')),
 
 
 
