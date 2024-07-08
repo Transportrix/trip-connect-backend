@@ -6,6 +6,9 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from core.views.home import home
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 # from core import views
 schema_view = get_schema_view(
@@ -52,3 +55,5 @@ urlpatterns = [
 
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
