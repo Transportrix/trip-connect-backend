@@ -6,7 +6,7 @@ from core.serializers.driver import DriverSerializer
 
 class TransportBusSerializer(serializers.ModelSerializer):
     driver = DriverSerializer()
-
+    
     class Meta:
         model = TransportBus
-        fields = '__all__'
+        fields = ['id', 'bus_number', 'capacity', 'model', 'driver']
