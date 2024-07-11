@@ -1,12 +1,12 @@
 
 from rest_framework import serializers
 
-from core.models.busschedules import BusSchedule
-from core.serializers.transportbus import TransportBusSerializer
+from core.models.transportschedules import TransportSchedules
+from core.serializers.vehicle import VehicleSerializer
 
-class BusScheduleSerializer(serializers.ModelSerializer):
-    bus = TransportBusSerializer()
+class TransportSchedulesSerializer(serializers.ModelSerializer):
+    bus = VehicleSerializer()
     class Meta:
-        model = BusSchedule
+        model = TransportSchedules
         fields = '__all__'
 

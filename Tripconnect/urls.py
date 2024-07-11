@@ -42,7 +42,7 @@ urlpatterns = [
     path('api/drivers/',include('core.urls.drivers')),
     path('api/notifications/',include('core.urls.notifications')),
     path('api/reviews/',include('core.urls.reviews')),
-    path('api/transportbuses/',include('core.urls.vehicles')),
+    path('api/vehicles/',include('core.urls.vehicles')),
     path('api/fixedbookings/',include('core.urls.bookings')),
 
 
