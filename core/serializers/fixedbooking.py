@@ -1,12 +1,15 @@
 from rest_framework import serializers
+from core.models.bookedseats import BookedSeat
 from core.models.fixedbookings import FixedBooking
+from core.models.transportschedules import TransportSchedules
 from core.serializers.bookedseat import BookedSeatSerializer
 from core.serializers.busschedule import TransportSchedulesSerializer
 
+
 class BookingsSerializer(serializers.ModelSerializer):
+    booked_bus_seats = BookedSeatSerializer(many=True)
     bus_schedule = TransportSchedulesSerializer()
-    booked_bus_seats = BookedSeatSerializer(many=True, read_only=True)
 
     class Meta:
         model = FixedBooking
-        fields = ['id', 'user', 'bus_schedule', 'booking_date', 'status', 'booked_bus_seats']
+        fields = "__all__"

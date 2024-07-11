@@ -6,4 +6,5 @@ from core.models.bookedseats import BookedSeat
 class BookedSeatSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookedSeat
-        fields = ['id', 'seat_number']
+        fields = ['booking', 'seat_number']
+

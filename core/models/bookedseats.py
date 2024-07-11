@@ -10,3 +10,9 @@ class BookedSeat(models.Model):
     seat_number = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('booking', 'seat_number')  # Ensures seat_number is unique per booking
+
+    def __str__(self):
+        return f"Booking {self.booking_id} - Seat {self.seat_number}"
