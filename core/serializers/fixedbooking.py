@@ -3,7 +3,7 @@ from core.models.bookedseats import BookedSeat
 from core.models.fixedbookings import FixedBooking
 from core.models.transportschedules import TransportSchedules
 from core.serializers.bookedseat import BookedSeatSerializer
-from core.serializers.busschedule import TransportSchedulesSerializer
+from core.serializers.transportschedules import TransportSchedulesSerializer
 
 
 class BookingsSerializer(serializers.ModelSerializer):

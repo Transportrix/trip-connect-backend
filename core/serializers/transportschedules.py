@@ -5,7 +5,7 @@ from core.serializers.vehicle import VehicleSerializer
 
 
 class TransportSchedulesSerializer(serializers.ModelSerializer):
-    vehicles = serializers.SerializerMethodField()
+    # vehicles = serializers.SerializerMethodField()
 
     class Meta:
         model = TransportSchedules
