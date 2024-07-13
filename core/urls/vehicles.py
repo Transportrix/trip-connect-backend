@@ -1,8 +1,9 @@
 from django.urls import path
-
-from core.views.product import ProductDetail, ProductList
+from core.views.vehicles import VehicleList, VehicleDetail, VehicleWithSchedules, SearchVehicleWithSchedule
 
 urlpatterns = [
-    path('', ProductList.as_view(), name='list'),
-    path('<int:pk>/', ProductDetail.as_view(), name='detail'),
+    path('', VehicleList.as_view(), name='vehicle-list'),
+    path('<int:pk>/', VehicleDetail.as_view(), name='vehicle-detail'),
+    path('vehicles-with-schedules/', VehicleWithSchedules.as_view(), name='vehicle-with-schedules'),
+    path('search-vehicle-with-schedule/', SearchVehicleWithSchedule.as_view(), name='search-vehicle-with-schedule'),
 ]

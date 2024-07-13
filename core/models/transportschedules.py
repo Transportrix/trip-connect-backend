@@ -8,7 +8,6 @@ class TransportSchedules(models.Model):
     travelling_to = models.CharField(max_length=255)
     departure_time = models.DateTimeField()
     estimated_arrival_time = models.DateTimeField()
-    vehicles = models.ManyToManyField(Vehicle, through='TransportBusesAndSchedules')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

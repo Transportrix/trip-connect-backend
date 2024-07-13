@@ -5,8 +5,8 @@ from core.serializers.driver import DriverSerializer
 
 
 class VehicleSerializer(serializers.ModelSerializer):
-    driver = DriverSerializer()
     
     class Meta:
         model = Vehicle
-        fields = ['id', 'vehicle_number', 'capacity', 'model', 'driver']
+        fields = ['id', 'vehicle_number', 'capacity', 'model']
+

@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from core.models.bookedseats import BookedSeat
 from core.models.transportschedules import TransportSchedules, TransportBusesAndSchedules
 from core.models.drivers import Driver
@@ -12,30 +11,27 @@ from core.models.users import User
 class UserAdmin(admin.ModelAdmin):
     search_fields = ('username', 'email')
     readonly_fields = ('created_at', 'updated_at')
+    list_display = ('username', 'email', 'created_at', 'updated_at')
+    # list_filter = ('is_active', 'is_staff')
 
 @admin.register(Driver)
 class DriverAdmin(admin.ModelAdmin):
-    list_display = ('license_number', 'created_at', 'updated_at')
+    list_display = ('license_number', 'user', 'created_at', 'updated_at')
     search_fields = ('user__username', 'license_number')
     readonly_fields = ('created_at', 'updated_at')
+    list_filter = ('created_at', 'updated_at')
 
 @admin.register(Vehicle)
 class VehiclesAdmin(admin.ModelAdmin):
     list_display = ('vehicle_number', 'capacity', 'model', 'driver', 'created_at', 'updated_at')
-    list_filter = ('driver',)
+    list_filter = ('driver', 'model')
     search_fields = ('vehicle_number', 'model')
-    readonly_fields = ('created_at', 'updated_at')
-
-@admin.register(TransportSchedules)
-class TransportSchedulesAdmin(admin.ModelAdmin):
-    list_display = ('travelling_from', 'travelling_to', 'departure_time', 'estimated_arrival_time', 'created_at', 'updated_at')
-    search_fields = ('travelling_from', 'travelling_to')
     readonly_fields = ('created_at', 'updated_at')
 
 @admin.register(FixedBooking)
 class FixedBookingAdmin(admin.ModelAdmin):
     list_display = ('user', 'bus_schedule', 'booking_date', 'status', 'created_at', 'updated_at')
-    list_filter = ('status',)
+    list_filter = ('status', 'booking_date')
     search_fields = ('user__username', 'bus_schedule__travelling_from', 'bus_schedule__travelling_to')
     readonly_fields = ('created_at', 'updated_at')
 
@@ -57,3 +53,16 @@ class TransportBusesAndSchedulesAdmin(admin.ModelAdmin):
     list_display = ('schedule', 'vehicle', 'created_at', 'updated_at')
     search_fields = ('schedule__travelling_from', 'schedule__travelling_to', 'vehicle__vehicle_number')
     readonly_fields = ('created_at', 'updated_at')
+    autocomplete_fields = ['schedule', 'vehicle']
+
+class TransportBusesAndSchedulesInline(admin.TabularInline):
+    model = TransportBusesAndSchedules
+    extra = 1
+    autocomplete_fields = ['vehicle']
+
+@admin.register(TransportSchedules)
+class TransportSchedulesAdmin(admin.ModelAdmin):
+    list_display = ('travelling_from', 'travelling_to', 'departure_time', 'estimated_arrival_time', 'created_at', 'updated_at')
+    search_fields = ('travelling_from', 'travelling_to')
+    readonly_fields = ('created_at', 'updated_at')
+    inlines = [TransportBusesAndSchedulesInline]
