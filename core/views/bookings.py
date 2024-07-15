@@ -38,9 +38,8 @@ class BookingsList(APIView):
         ),
         responses={200: BookedSeatSerializer(many=True)},
     )
-    def post(self, request):
+    def post(self, request, user_id):
         try:
-            user_id = request.data.get("user_id")  # Assuming user authentication is set up
             bus_id = request.data.get(
                 "bus_id"
             )  # Assuming you submit bus_id in the request data
