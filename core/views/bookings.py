@@ -18,7 +18,7 @@ from drf_yasg.utils import swagger_auto_schema
 
 class BookingsList(APIView):
     def get(self, request, user_id):
-        bookings = FixedBooking.objects.filter(user_id= user_id).order_by("-created-at")
+        bookings = FixedBooking.objects.filter(user_id= user_id).order_by("-created_at")
         serializer = BookingsSerializer(bookings, many=True)
         return Response(serializer.data)
 
