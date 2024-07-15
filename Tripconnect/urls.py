@@ -33,16 +33,16 @@ urlpatterns = [
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("", home),
     path("admin/", admin.site.urls),
-    path("api/products/", include("core.urls.product")),
+    # path("api/products/", include("core.urls.product")),
     path("api/users/", include("core.urls.users")),
     path("api/drivers/", include("core.urls.drivers")),
     path("api/notifications/", include("core.urls.notifications")),
     path("api/reviews/", include("core.urls.reviews")),
     path("api/vehicles/", include("core.urls.vehicles")),
+    path("api/transport-buses/", include("core.urls.transportbus")),
     path("api/fixedbookings/", include("core.urls.bookings")),
     path("api/transport-schedules/", include("core.urls.transportschedules")),
     path("api/flexiblebookings/", include("core.urls.bookings")),
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

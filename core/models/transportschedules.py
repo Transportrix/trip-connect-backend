@@ -1,5 +1,6 @@
 from django.db import models
 
+from core.models.transportbus import TransportBus
 from core.models.vehicles import Vehicle
 
 
@@ -17,9 +18,9 @@ class TransportSchedules(models.Model):
 
 class TransportBusesAndSchedules(models.Model):
     schedule = models.ForeignKey(TransportSchedules, on_delete=models.CASCADE)
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    transportbus = models.ForeignKey(TransportBus, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Schedule {self.schedule.id} - Vehicle {self.vehicle.vehicle_number}"
+        return f"Schedule {self.schedule.id} - Vehicle {self.transportbus}"

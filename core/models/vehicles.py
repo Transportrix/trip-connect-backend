@@ -12,4 +12,4 @@ class Vehicle(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.vehicle_number
+        return f"{self.id} -> {self.vehicle_number} "

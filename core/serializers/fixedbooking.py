@@ -7,8 +7,8 @@ from core.serializers.transportschedules import TransportSchedulesSerializer
 
 
 class BookingsSerializer(serializers.ModelSerializer):
-    booked_bus_seats = BookedSeatSerializer(many=True)
-    bus_schedule = TransportSchedulesSerializer()
+    # booked_bus_seats = BookedSeatSerializer(many=True)
+    # bus_schedule = TransportSchedulesSerializer()
 
     class Meta:
         model = FixedBooking

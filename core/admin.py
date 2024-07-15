@@ -1,5 +1,6 @@
 from django.contrib import admin
 from core.models.bookedseats import BookedSeat
+from core.models.transportbus import TransportBus
 from core.models.transportschedules import TransportSchedules, TransportBusesAndSchedules
 from core.models.drivers import Driver
 from core.models.fixedbookings import FixedBooking
@@ -30,9 +31,9 @@ class VehiclesAdmin(admin.ModelAdmin):
 
 @admin.register(FixedBooking)
 class FixedBookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'bus_schedule', 'booking_date', 'status', 'created_at', 'updated_at')
+    list_display = ('user', 'bus_and_schedule', 'booking_date', 'status', 'created_at', 'updated_at')
     list_filter = ('status', 'booking_date')
-    search_fields = ('user__username', 'bus_schedule__travelling_from', 'bus_schedule__travelling_to')
+    search_fields = ('user__username', 'bus_and_schedule__schedule__travelling_from', 'bus_and_schedule__schedule__travelling_to')
     readonly_fields = ('created_at', 'updated_at')
 
 @admin.register(BookedSeat)
@@ -50,19 +51,18 @@ class NotificationAdmin(admin.ModelAdmin):
 
 @admin.register(TransportBusesAndSchedules)
 class TransportBusesAndSchedulesAdmin(admin.ModelAdmin):
-    list_display = ('schedule', 'vehicle', 'created_at', 'updated_at')
-    search_fields = ('schedule__travelling_from', 'schedule__travelling_to', 'vehicle__vehicle_number')
+    list_display = ('schedule', 'transportbus', 'created_at', 'updated_at')
+    # search_fields = ('schedule__travelling_from', 'schedule__travelling_to', 'vehicle__vehicle_number')
     readonly_fields = ('created_at', 'updated_at')
-    autocomplete_fields = ['schedule', 'vehicle']
 
 class TransportBusesAndSchedulesInline(admin.TabularInline):
     model = TransportBusesAndSchedules
     extra = 1
-    autocomplete_fields = ['vehicle']
 
 @admin.register(TransportSchedules)
 class TransportSchedulesAdmin(admin.ModelAdmin):
-    list_display = ('travelling_from', 'travelling_to', 'departure_time', 'estimated_arrival_time', 'created_at', 'updated_at')
-    search_fields = ('travelling_from', 'travelling_to')
-    readonly_fields = ('created_at', 'updated_at')
     inlines = [TransportBusesAndSchedulesInline]
+
+@admin.register(TransportBus)
+class TransportBusAdmin(admin.ModelAdmin):
+    readonly_fields = ('created_at', 'updated_at')
