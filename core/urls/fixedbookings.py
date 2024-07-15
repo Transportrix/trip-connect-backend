@@ -1,6 +1,6 @@
 from django.urls import path
 
-from core.views.bookings import BookingsDetail, BookingsList
+from core.views.fixedbookings import BookingsDetail, BookingsList
 
 urlpatterns = [
     path('users/<int:user_id>/', BookingsList.as_view(), name='_list'),

@@ -1,6 +1,6 @@
 from django.urls import path
-from core.views.transportbus import SearchTransportBusWithSchedule, TransportBusWithSchedules
-from core.views.vehicles import VehicleList, VehicleDetail, VehicleWithSchedules, SearchVehicleWithSchedule
+
+from core.views.transportbus import TransportBusWithSchedules
 
 urlpatterns = [
     path('transport-buses-with-schedules/', TransportBusWithSchedules.as_view(), name='vehicle-with-schedules'),
