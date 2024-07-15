@@ -40,7 +40,7 @@ urlpatterns = [
     path("api/reviews/", include("core.urls.reviews")),
     path("api/vehicles/", include("core.urls.vehicles")),
     path("api/transport-buses/", include("core.urls.transportbus")),
-    path("api/fixedbookings/", include("core.urls.bookings")),
+    path("api/fixed-bookings/", include("core.urls.bookings")),
     path("api/transport-schedules/", include("core.urls.transportschedules")),
     path("api/flexiblebookings/", include("core.urls.bookings")),
 ]
