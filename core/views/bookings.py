@@ -17,8 +17,8 @@ from drf_yasg.utils import swagger_auto_schema
 
 
 class BookingsList(APIView):
-    def get(self, request):
-        bookings = FixedBooking.objects.all()
+    def get(self, request, user_id):
+        bookings = FixedBooking.objects.filter(user_id= user_id)
         serializer = BookingsSerializer(bookings, many=True)
         return Response(serializer.data)
 
@@ -112,14 +112,14 @@ class BookingsList(APIView):
 
 
 class BookingsDetail(APIView):
-    def get_object(self, pk):
+    def get_object(self, pk, user_id):
         try:
-            return FixedBooking.objects.get(pk=pk)
+            return FixedBooking.objects.get(pk=pk, user_id=user_id)
         except FixedBooking.DoesNotExist:
             raise Http404
-
-    def get(self, request, pk):
-        bookings = self.get_object(pk)
+        
+    def get(self, request, booking_id, user_id):
+        bookings = self.get_object(booking_id, user_id)
         serializer = BookingsSerializer(bookings)
         return Response(serializer.data)
 
