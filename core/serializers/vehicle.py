@@ -3,8 +3,20 @@ from rest_framework import serializers
 from core.models.fixedbookings import FixedBooking
 from core.models.transportbus import TransportBus
 from core.models.vehicleimage import VehicleImage
-from core.models.vehicles import Vehicle
+from core.models.vehicles import Vehicle, VehicleModel, VehicleType
 from core.serializers.driver import DriverSerializer
+
+
+class VehicleModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleModel
+        fields = ["name"]
+
+
+class VehicleTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleType
+        fields = ["name"]
 
 
 class VehicleImageSerializer(serializers.ModelSerializer):
@@ -15,6 +27,8 @@ class VehicleImageSerializer(serializers.ModelSerializer):
 
 class VehicleSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
+    model = VehicleModelSerializer()
+    type = VehicleTypeSerializer()
 
     class Meta:
         model = Vehicle

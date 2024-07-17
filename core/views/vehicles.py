@@ -11,9 +11,11 @@ class VehicleModelListView(APIView):
         vehicle_type = request.query_params.get('type')
         
         if vehicle_type:
-            vehicle_models = Vehicle.objects.filter(type__iexact=vehicle_type).values_list('model', flat=True).distinct()
+            vehicle_models = Vehicle.objects.filter(
+                type__name__iexact=vehicle_type
+            ).values_list('model__name', flat=True).distinct()
         else:
-            vehicle_models = Vehicle.objects.values_list('model', flat=True).distinct()
+            vehicle_models = Vehicle.objects.values_list('model__name', flat=True).distinct()
         
         if not vehicle_models:
             return Response({"error": "No models found"}, status=status.HTTP_404_NOT_FOUND)
@@ -22,7 +24,11 @@ class VehicleModelListView(APIView):
 
 class VehicleTypeListView(APIView):
     def get(self, request):
-        vehicle_types = Vehicle.objects.values_list('type', flat=True).distinct()
+        vehicle_types = Vehicle.objects.values_list('type__name', flat=True).distinct()
+        
+        if not vehicle_types:
+            return Response({"error": "No types found"}, status=status.HTTP_404_NOT_FOUND)
+        
         return Response(vehicle_types, status=status.HTTP_200_OK)
 
 

@@ -10,7 +10,7 @@ from core.models.drivers import Driver
 from core.models.fixedbookings import FixedBooking
 from core.models.notifications import Notification
 from core.models.vehicleimage import VehicleImage
-from core.models.vehicles import Vehicle
+from core.models.vehicles import Vehicle, VehicleModel, VehicleType
 from core.models.users import User
 
 
@@ -106,3 +106,7 @@ class VehicleImageInline(admin.TabularInline):
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
     inlines = [VehicleImageInline]
+
+
+admin.site.register(VehicleModel)
+admin.site.register(VehicleType)
