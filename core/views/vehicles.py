@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from core.models.vehicles import Vehicle, VehicleModel, VehicleType
-from core.serializers.vehicle import VehicleSerializer
+from core.serializers.vehicle import VehicleModelSerializer, VehicleSerializer, VehicleTypeSerializer
+
 
 class VehicleModelListView(APIView):
     def get(self, request):
@@ -12,24 +13,29 @@ class VehicleModelListView(APIView):
         
         if vehicle_type:
             vehicle_models = VehicleModel.objects.filter(
-                vehicle__type__name__exact=vehicle_type
+                vehicles__type__name__iexact=vehicle_type
             ).values_list('name', flat=True).distinct()
         else:
-            vehicle_models = VehicleModel.objects.values_list('name', flat=True).distinct()
+            vehicle_models = VehicleModel.objects.filter(vehicles__isnull=False).values_list('name', flat=True).distinct()
         
         if not vehicle_models:
-            return Response({"error": "No models found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response([], status=status.HTTP_200_OK)
+
+        vehicle_models_list = list(vehicle_models)
+
         
-        return Response(vehicle_models, status=status.HTTP_200_OK)
+        return Response(vehicle_models_list, status=status.HTTP_200_OK)
 
 class VehicleTypeListView(APIView):
     def get(self, request):
-        vehicle_types = VehicleType.objects.values_list('name', flat=True).distinct()
+        vehicle_types = VehicleType.objects.filter(vehicles__isnull=False).values_list('name', flat=True).distinct()
         
         if not vehicle_types:
-            return Response({"error": "No types found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response([], status=status.HTTP_200_OK)
         
-        return Response(vehicle_types, status=status.HTTP_200_OK)
+        vehicle_types_list = list(vehicle_types)
+        
+        return Response(vehicle_types_list, status=status.HTTP_200_OK)
 
 class VehicleSearchView(APIView):
     def get(self, request):
