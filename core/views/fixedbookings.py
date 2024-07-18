@@ -87,7 +87,7 @@ class BookingsList(APIView):
 
             # Retrieve all booked seats for the response
             booked_seats_queryset = BookedSeat.objects.filter(booking=fixed_booking)
-            serializer = BookedSeatSerializer(booked_seats_queryset, many=True)
+            serializer = BookingsSerializer(fixed_booking)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
