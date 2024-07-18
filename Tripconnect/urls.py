@@ -42,7 +42,7 @@ urlpatterns = [
     path("api/transport-buses/", include("core.urls.transportbus")),
     path("api/fixed-bookings/", include("core.urls.fixedbookings")),
     path("api/transport-schedules/", include("core.urls.transportschedules")),
-    path("api/flexiblebookings/", include("core.urls.flexiblebookings")),
+    path("api/flexible-bookings/", include("core.urls.flexiblebookings")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
