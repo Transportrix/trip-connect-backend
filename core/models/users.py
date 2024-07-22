@@ -2,12 +2,11 @@ from django.db import models
 
 
 class User(models.Model):
-    username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=255, unique=True)
     uid = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255)
 
-    # is_driver = models.BooleanField(default=False)  # Indicates if the user is a driver
     # Add other common user attributes as needed
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
