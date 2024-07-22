@@ -19,7 +19,6 @@ class TransportBusesAndSchedulesSerializer(serializers.ModelSerializer):
 
 class TransportSchedulesWithBusesSerializer(serializers.ModelSerializer):
     transportbusesandschedules_set = TransportBusesAndSchedulesSerializer(many=True, read_only=True)
-
     class Meta:
         model = TransportSchedules
         fields = [

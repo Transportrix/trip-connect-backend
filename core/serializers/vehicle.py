@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
+from core.models.bookedseats import BookedSeat
 from core.models.fixedbookings import FixedBooking
 from core.models.transportbus import TransportBus
 from core.models.vehicleimage import VehicleImage
 from core.models.vehicles import Vehicle, VehicleModel, VehicleType
+from core.serializers.bookedseat import BookedSeatSerializer
 from core.serializers.driver import DriverSerializer
 
 
@@ -41,19 +43,16 @@ class VehicleSerializer(serializers.ModelSerializer):
         ).data
 
 
+
+
 class TransportBusSerializer(serializers.ModelSerializer):
     vehicle = VehicleSerializer()
-    booked_seats_count = serializers.SerializerMethodField()
+    booked_seats = serializers.SerializerMethodField()
 
     class Meta:
         model = TransportBus
-        fields = ["id", "booked_seats_count", "vehicle", "bus_type"]
+        fields = ["id", "booked_seats", "vehicle", "bus_type"]
 
-    def get_booked_seats_count(self, obj):
-        # Query FixedBooking instances related to this TransportBus
-        bookings = FixedBooking.objects.filter(bus_and_schedule__transportbus=obj)
-        # Calculate total booked seats across all related bookings
-        total_booked_seats = sum(
-            booking.booked_bus_seats.count() for booking in bookings
-        )
-        return total_booked_seats
+    def get_booked_seats(self, obj):
+        booked_seats = BookedSeat.objects.filter(booking__bus_and_schedule__transportbus=obj)
+        return BookedSeatSerializer(booked_seats, many=True).data
