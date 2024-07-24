@@ -198,3 +198,39 @@ class BookingsDetail(APIView):
         bookings = self.get_object(pk)
         bookings.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class SetPaymentStatusView(APIView):
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                'booking_id',
+                openapi.IN_PATH,
+                description="ID of the booking to update",
+                type=openapi.TYPE_INTEGER,
+                required=True,
+            )
+        ],
+        responses={
+            200: BookingsSerializer,
+            404: "Booking not found",
+        },
+    )
+    def post(self, request, booking_id):
+        try:
+            fixed_booking = get_object_or_404(FixedBooking, pk=booking_id)
+            fixed_booking.is_paid = True
+            fixed_booking.save()
+
+            serializer = BookingsSerializer(fixed_booking)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except FixedBooking.DoesNotExist:
+            return Response(
+                {"error": "Booking does not exist."}, status=status.HTTP_404_NOT_FOUND
+            )
+
+        except Exception as e:
+            return Response(
+                {"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

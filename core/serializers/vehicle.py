@@ -34,7 +34,7 @@ class VehicleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vehicle
-        fields = ["id", "name", "vehicle_number", "capacity", "model", "type", "images"]
+        fields = ["id", "name", "vehicle_number", "capacity", "model", "type", "images", "rental_price"]
 
     def get_images(self, obj):
         vehicle_images = VehicleImage.objects.filter(vehicle=obj)

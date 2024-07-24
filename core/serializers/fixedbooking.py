@@ -26,3 +26,10 @@ class BookingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = FixedBooking
         fields = "__all__"
+
+
+class FixedBookingsSerializer(serializers.ModelSerializer):
+    pass
+    class Meta: 
+        model = FixedBooking
+        fields = "__all__"
