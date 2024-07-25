@@ -5,6 +5,7 @@ from core.models.flexiblebookings import FlexibleBooking
 from core.serializers.vehicle import VehicleSerializer
 
 class FlexibleBookingSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = FlexibleBooking
         fields = '__all__'

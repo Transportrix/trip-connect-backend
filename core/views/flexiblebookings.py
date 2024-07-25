@@ -41,7 +41,7 @@ class FlexibleBookingDetailView(APIView):
 
     def get(self, request, pk):
         booking = self.get_object(pk)
-        serializer = FlexibleBookingSerializer(booking)
+        serializer = FlexibleBookingDetailsSerializer(booking)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):

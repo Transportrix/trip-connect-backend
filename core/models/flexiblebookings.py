@@ -13,7 +13,7 @@ class FlexibleBooking(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_paid = models.BooleanField(default=False)  # New field for payment status
-    cost= models.DecimalField(max_digits=10, decimal_places=2)  # New field for rental price
+    cost= models.DecimalField(max_digits=10, decimal_places=2, null=True)  # New field for rental price
 
 
     def __str__(self):
